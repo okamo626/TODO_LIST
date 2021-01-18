@@ -4,6 +4,7 @@ from .forms import ListForm
 from django.contrib import messages
 
 def home(request):
+    print("home")
 
     if request.method == 'POST':
         form = ListForm(request.POST or None)
@@ -19,11 +20,13 @@ def home(request):
 
 
 def about(request):
+    print("about")
     context = {'first_name': 'Harry', 'last_name': 'Potter'}
     return render(request, 'about.html', context)
 
 
 def delete(request, list_id):
+    print("delete")
     item = List.objects.get(pk=list_id)
     item.delete()
     messages.success(request, ('Item Has Been Deleted from List!'))
@@ -31,6 +34,7 @@ def delete(request, list_id):
 
 
 def uncomplete(request, list_id):
+    print("umcpmplete")
     item = List.objects.get(pk=list_id)
     item.completed = False
     item.save()
@@ -38,12 +42,14 @@ def uncomplete(request, list_id):
 
 
 def complete(request, list_id):
+    print("complete")
     item = List.objects.get(pk=list_id)
     item.completed = True
     item.save()
     return redirect('home')
 
 def edit(request, list_id):
+    print("edit")
     if request.method == 'POST':
         item = List.objects.get(pk=list_id)
         form = ListForm(request.POST or None, instance=item)

@@ -6,4 +6,4 @@ class List(models.Model):
 
     # 変更
     def __str__(self):
-        return self.item + ' | ' + str(self.completed) 
+        return self.item + ' | ' + str(self.completed)
